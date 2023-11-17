@@ -43,21 +43,23 @@ class DateItem extends StatefulWidget {
   /// [cacheStream] for emit date press event
   final CacheStream<DateTime?> cacheStream;
 
-  DateItem({
-    required this.today,
-    required this.date,
-    required this.cacheStream,
-    this.dateStyle,
-    this.pressedDateStyle,
-    this.backgroundColor = Colors.transparent,
-    this.todayBackgroundColor = Colors.orangeAccent,
-    this.pressedBackgroundColor,
-    this.decorationAlignment = FractionalOffset.center,
-    this.dayShapeBorder,
-    this.onDatePressed,
-    this.onDateLongPressed,
-    this.decoration,
-  });
+  final EdgeInsets? padding;
+
+  DateItem(
+      {required this.today,
+      required this.date,
+      required this.cacheStream,
+      this.dateStyle,
+      this.pressedDateStyle,
+      this.backgroundColor = Colors.transparent,
+      this.todayBackgroundColor = Colors.orangeAccent,
+      this.pressedBackgroundColor,
+      this.decorationAlignment = FractionalOffset.center,
+      this.dayShapeBorder,
+      this.onDatePressed,
+      this.onDateLongPressed,
+      this.decoration,
+      this.padding});
 
   @override
   __DateItemState createState() => __DateItemState();
@@ -103,6 +105,7 @@ class __DateItemState extends State<DateItem> {
   Widget _body() => Container(
         width: 50,
         height: 50,
+        padding: widget.padding ?? EdgeInsets.zero,
         alignment: FractionalOffset.center,
         child: GestureDetector(
           onLongPress: _onLongPressed,

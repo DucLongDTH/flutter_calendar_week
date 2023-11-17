@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
         ),
         body: Column(children: [
           Container(
+              padding: EdgeInsets.all(40),
               decoration: BoxDecoration(boxShadow: [
                 BoxShadow(
                     color: Colors.black.withOpacity(0.2),
@@ -43,6 +44,7 @@ class _HomePageState extends State<HomePage> {
                     spreadRadius: 1)
               ]),
               child: CalendarWeek(
+                dayItemPadding: EdgeInsets.all(8),
                 controller: _controller,
                 height: 100,
                 showMonth: true,
