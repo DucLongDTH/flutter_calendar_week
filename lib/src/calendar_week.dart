@@ -398,6 +398,7 @@ class _CalendarWeekState extends State<CalendarWeek> {
 
   /// Day of week item layout
   Widget _dayOfWeekItem(String title) => Container(
+      width: 50,
       alignment: Alignment.center,
       child: Container(
         child: Text(
@@ -419,51 +420,54 @@ class _CalendarWeekState extends State<CalendarWeek> {
 
   /// Date item layout
   Widget _dateItem(DateTime? date) => Flexible(
-        child: DateItem(
-            today: controller._today,
-            date: date,
-            padding: widget.dayItemPadding,
-            dateStyle: compareDate(date, controller._today)
-                ? widget.todayDateStyle
-                : date != null && (date.weekday == 6 || date.weekday == 7)
-                    ? widget.weekendsStyle
-                    : widget.dateStyle,
-            pressedDateStyle: widget.datePressedStyle,
-            backgroundColor: widget.dateBackgroundColor,
-            todayBackgroundColor: widget.todayBackgroundColor,
-            pressedBackgroundColor: widget.datePressedBackgroundColor,
-            decorationAlignment: () {
-              /// If date is contain in decorations list, use decorations Alignment
-              if (widget.decorations.isNotEmpty) {
-                final List<DecorationItem> matchDate = widget.decorations
-                    .where((ele) => compareDate(ele.date, date))
-                    .toList();
-                return matchDate.isNotEmpty
-                    ? matchDate[0].decorationAlignment
-                    : FractionalOffset.center;
-              }
-              return FractionalOffset.center;
-            }(),
-            dayShapeBorder: widget.dayShapeBorder,
-            onDatePressed: (datePressed) {
-              controller._selectedDate = datePressed;
-              widget.onDatePressed(datePressed);
-            },
-            onDateLongPressed: (datePressed) {
-              controller._selectedDate = datePressed;
-              widget.onDateLongPressed(datePressed);
-            },
-            decoration: () {
-              /// If date is contain in decorations list, use decorations Widget
-              if (widget.decorations.isNotEmpty) {
-                final List<DecorationItem> matchDate = widget.decorations
-                    .where((ele) => compareDate(ele.date, date))
-                    .toList();
-                return matchDate.isNotEmpty ? matchDate[0].decoration : null;
-              }
-              return null;
-            }(),
-            cacheStream: _cacheStream),
+        child: SizedBox(
+          // width: 50,
+          child: DateItem(
+              today: controller._today,
+              date: date,
+              padding: widget.dayItemPadding,
+              dateStyle: compareDate(date, controller._today)
+                  ? widget.todayDateStyle
+                  : date != null && (date.weekday == 6 || date.weekday == 7)
+                      ? widget.weekendsStyle
+                      : widget.dateStyle,
+              pressedDateStyle: widget.datePressedStyle,
+              backgroundColor: widget.dateBackgroundColor,
+              todayBackgroundColor: widget.todayBackgroundColor,
+              pressedBackgroundColor: widget.datePressedBackgroundColor,
+              decorationAlignment: () {
+                /// If date is contain in decorations list, use decorations Alignment
+                if (widget.decorations.isNotEmpty) {
+                  final List<DecorationItem> matchDate = widget.decorations
+                      .where((ele) => compareDate(ele.date, date))
+                      .toList();
+                  return matchDate.isNotEmpty
+                      ? matchDate[0].decorationAlignment
+                      : FractionalOffset.center;
+                }
+                return FractionalOffset.center;
+              }(),
+              dayShapeBorder: widget.dayShapeBorder,
+              onDatePressed: (datePressed) {
+                controller._selectedDate = datePressed;
+                widget.onDatePressed(datePressed);
+              },
+              onDateLongPressed: (datePressed) {
+                controller._selectedDate = datePressed;
+                widget.onDateLongPressed(datePressed);
+              },
+              decoration: () {
+                /// If date is contain in decorations list, use decorations Widget
+                if (widget.decorations.isNotEmpty) {
+                  final List<DecorationItem> matchDate = widget.decorations
+                      .where((ele) => compareDate(ele.date, date))
+                      .toList();
+                  return matchDate.isNotEmpty ? matchDate[0].decoration : null;
+                }
+                return null;
+              }(),
+              cacheStream: _cacheStream),
+        ),
       );
 
   @override
